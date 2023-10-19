@@ -25,7 +25,10 @@ app.use(session(sess));
 connectToDatabase();
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.status(200).json({
+    message: "Welcome to Gather API",
+    success: true,
+  });
 });
 
 app.use("/oauth2", authRouter);

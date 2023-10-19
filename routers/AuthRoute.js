@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/AuthController.js";
+import { loginUser, registerUser } from "../controllers/AuthController.js";
 import passport from "passport";
 
 const authRouter = Router();
 
-authRouter.get("/register", registerUser);
+authRouter.post("/register", registerUser);
+authRouter.post("/login", loginUser);
+
 authRouter.get(
   "/google",
   passport.authenticate("google", {

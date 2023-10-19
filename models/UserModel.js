@@ -1,3 +1,4 @@
+import { verify } from "argon2";
 import { Schema, model } from "mongoose";
 
 const UserSchema = new Schema({
@@ -40,6 +41,16 @@ const UserSchema = new Schema({
     },
   ],
 });
+
+// Define a method to verify the password
+UserSchema.methods.verifyPassword = async function (candidatePassword) {
+  try {
+    return await verify(this.password, candidatePassword);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const User = model("User", UserSchema);
 
 export default User;
