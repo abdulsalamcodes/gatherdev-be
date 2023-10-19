@@ -1,1 +1,46 @@
-node_modules
+# Dependency directories
+node_modules/
+
+# Environment variables (your .env file)
+.env
+
+# Log files
+*.log
+npm-debug.log*
+
+# Editor/IDE settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS generated files
+.DS_Store
+
+# Temporary files
+*.swp
+
+# Build output
+/build/
+
+# Coverage reports
+coverage/
+
+# System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Compiled Python files
+__pycache__/
+
+# Database files
+*.db
+
+# Serverless Framework
+.sls*cache/
