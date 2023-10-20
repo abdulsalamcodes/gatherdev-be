@@ -14,6 +14,10 @@ const PostSchema = new Schema(
       ref: "User",
       required: true,
     },
+    likes: {
+      type: Number,
+      default: 0,
+    },
     comments: [
       {
         type: Schema.Types.ObjectId,
@@ -22,7 +26,7 @@ const PostSchema = new Schema(
     ],
   },
   {
-    timestamps: true, // Automatically add "createdAt" and "updatedAt" fields
+    timestamps: true,
   }
 );
 
