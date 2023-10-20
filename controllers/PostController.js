@@ -7,7 +7,7 @@ export const createPost = async (req, res) => {
     const post = await Post.create(newPost);
 
     // Populate the "author" field before sending the response
-    await post.populate("author");
+    await post.populate("author", "-password -email -__v -posts -comments");
 
     res.status(200).json({
       message: "Post created successfully",
@@ -28,7 +28,10 @@ export const createPost = async (req, res) => {
 
 export const fetchPosts = async (req, res) => {
   try {
-    const posts = await Post.find({}).populate("author");
+    const posts = await Post.find({}).populate(
+      "author",
+      "-password -email -__v -posts -comments"
+    );
     res.status(200).json({
       message: "Posts fetched successfully",
       success: true,
