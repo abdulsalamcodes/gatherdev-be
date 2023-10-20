@@ -63,6 +63,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// Register user with Google
 export const registerWithGoogle = () => {
   return passport.authenticate("google", {
     scope: ["profile", "email"],
@@ -207,5 +208,18 @@ export const forgetPassword = async (req, res) => {
         "An error occurred while processing your request, please try again",
       success: false,
     });
+  }
+};
+
+// Authorize user
+export const authorize = (req, res, next) => {
+  try {
+    const token = req.headers["authorization"].split(" ")[1];
+    const decodedToken = jwt.verify(token, jwtSecret);
+    req.user = decodedToken;
+    next();
+  } catch (error) {
+    // Handle JWT verification errors
+    res.status(401).json({ message: "Unauthorized" });
   }
 };

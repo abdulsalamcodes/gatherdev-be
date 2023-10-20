@@ -1,10 +1,12 @@
 import express from "express";
 import "dotenv/config";
-import connectToDatabase from "./db.js";
-import "./passport.js";
-import authRouter from "./routers/AuthRoute.js";
-import session from "express-session";
 import cors from "cors";
+import session from "express-session";
+
+import "./passport.js";
+import connectToDatabase from "./db.js";
+import authRouter from "./routes/AuthRoute.js";
+import postRouter from "./routes/PostRoute.js";
 
 const app = express();
 
@@ -34,6 +36,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/oauth2", authRouter);
+app.use("/post", postRouter);
+
+app.use("*", (req, res) => {
+  return res.status(400).send("Invalid Page, please, return to home page");
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
