@@ -4,9 +4,11 @@ import connectToDatabase from "./db.js";
 import "./passport.js";
 import authRouter from "./routers/AuthRoute.js";
 import session from "express-session";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 var sess = {
   secret: "keyboard cat",
   cookie: {},
